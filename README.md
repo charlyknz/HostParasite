@@ -15,9 +15,11 @@ In this study we compared two patterns of temperature variation, a diurnal tempe
 Data were analyzed using R version 3.6.1(R Core Team, 2018) interfacing with JAGS. A Beta Function was fitted to each of our different fitness estimates (that is, host fecundity, parasite infectivity and burden) for each of the three temperature regimes using a baysian framework.
 
 
+
 Datasets and R scripts used for the analyses: 
 
 List of RScripts: 
+
 betaFunction.R: Beta Function used to fit to the data.
 
 Host_BayesianAnalysis.R: Bayesian analysis for host data.
@@ -26,6 +28,7 @@ Parasite_BayesianAnalysis.R: Bayesian analysis for parasite data.
 
 
 List of datafiles used for analysis: 
+
 MeanTempTreatments.csv: mean temperature of the different treatments, calculated from temperature logger data that can be found in all_raw_temperatures_hobo.csv.
 
 all_raw_temperatures_hobo.csv: merged data file of recordings made by the temperature loggers within each of the water baths. 
