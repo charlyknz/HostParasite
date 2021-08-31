@@ -20,96 +20,100 @@ Datasets and R scripts used for the analyses:
 
 List of RScripts: 
 
-betaFunction.R: Beta Function used to fit to the data.
+*betaFunction.R*: Beta Function used to fit to the data.
 
-Host_BayesianAnalysis.R: Bayesian analysis for host data.
+*Host_BayesianAnalysis.R*: Bayesian analysis for host data.
 
-Parasite_BayesianAnalysis2.R: Bayesian analysis for parasite data.
+*Parasite_BayesianAnalysis2.R*: Bayesian analysis for parasite data.
+
+*HOBO.R*: R script to calculate mean temperature and merge all raw temperature files in the Rawtemperature folder.
+
 ###
 
 List of datafiles used for analysis: 
 
-MeanTempTreatments.csv: mean temperature of the different treatments, calculated from temperature logger data that can be found in all_raw_temperatures_hobo.csv.
+*MeanTempTreatments.csv*: mean temperature of the different treatments, calculated from temperature logger data that can be found in all_raw_temperatures_hobo.csv.
 
-all_raw_temperatures_hobo.csv: merged data file of recordings made by the temperature loggers within each of the water baths. 
+*SporesNoMaleNA.csv*: observations on infection status and spore burden.
 
-SporesNoMaleNA.csv: observations on infection status and spore burden.
+*sum_daphnia_noNA.csv*: observations on Daphnia fecundity over the duration of the experiment.
 
-sum_daphnia_noNA.csv: observations on Daphnia fecundity over the duration of the experiment.
+Rawtemperature folder: comprises all raw temeprature files for each treatment temperature logger. Here, *all_raw_temperatures_hobo.csv* contains all merged data files of recordings made by the temperature loggers within each of the water baths. 
+
 
 ###
 Explanations: 
 
-MeanTempTreatments.csv: mean temperature of the different treatments, calculated from temperature logger data that can be found in all_raw_temperatures_hobo.csv.
+*MeanTempTreatments.csv*: mean temperature of the different treatments, calculated from temperature logger data that can be found in all_raw_temperatures_hobo.csv.
+
 	meanTemp: mean temperature over the duration of the experiment.
   
-treatment: treatment information, either constant, pulse (or heatwave) or fluctuation corresponding to the used temperature regimes in the experiment.
+	treatment: treatment information, either constant, pulse (or heatwave) or fluctuation corresponding to the used temperature regimes in the experiment.
 
 
 ###
-all_raw_temperatures_hobo.csv: merged data file of recordings made by the temperature loggers within each of the water baths. 
+*all_raw_temperatures_hobo.csv*: merged data file of recordings made by the temperature loggers within each of the water baths. 
+	
 	no: number of the measurement.  
   
-date: date and time of the measurement.
+	date: date and time of the measurement.
 
-expected_temp: aimed temperatues
+	expected_temp: aimed temperatues
 
-temp: measured temperature in °C
+	temp: measured temperature in °C
 
-id: name of the specific HOBO logger which consist of the treatment and target temperature (e.g., constant 10)
+	id: name of the specific HOBO logger which consist of the treatment and target temperature (e.g., constant 10)
 
-
-###
-
-SporesNoMaleNA.csv: observations on infection status and spore burden
-
-no: unique sample number from 1 to 516.
-
-treatment: the temperature regime used, abbreviations, CS = constant, PULSE = heat wave, FLU = fluctuating. 
-
-exposed: exposure to the parasite, U = unexposed (control), I = exposed.
-
-temperature: target temperature (10, 13, 16, 19, 22, 25 and 28).  Note: for fluctuating regime this is the lower temperature.
-
-meantemp: mean temperature, different from target temperature for fluctuation regime which alternates been the target temperature and 6℃ higher.
-
-realtemp: measured mean temperature over the experimental period provided by temperature loggers see MeanTempTreatments.csv.
-
-replicate: replicate number from 1 to 18.
-
-death: date of death (last day 08/05/2019)
-
-lastday: was the animal alive the last day of the experiment? Either 0 (dead) or 1 (alive). Used for spore analysis.
-
-infect: infection status, either 0 (no parasite) or 1 (infected).
-
-no_spore: number of spores observed in the dissected Daphnia gut.
-
-size: size of the Daphnia measured under the binocular (for the real size this value 
-
-must be transformed by the magnification factor). Not used for the paper and is correlated with fecundity.
-
-comment: gives additional information about the Daphnia during their live span.
 
 ###
 
-sum_daphnia_noNA.csv: Daphnia data
+*SporesNoMaleNA.csv*: observations on infection status and spore burden
 
-no: unique sample number from 1 to 516.
+	no: unique sample number from 1 to 516.
 
-treat: the temperature regime used, abbreviations, CS = constant, PULSE = heat wave, FLU = fluctuating. 
+	treatment: the temperature regime used, abbreviations, CS = constant, PULSE = heat wave, FLU = fluctuating. 
 
-inf: exposure to the parasite, U = unexposed (control), I = exposed.
+	exposed: exposure to the parasite, U = unexposed (control), I = exposed.
 
-mean_temp: measured mean temperature over the experimental period provided by temperature loggers see MeanTempTreatments.csv.
+	temperature: target temperature (10, 13, 16, 19, 22, 25 and 28).  Note: for fluctuating regime this is the lower temperature.
 
-temp: target temperature (10, 13, 16, 19, 22, 25 and 28)
+	meantemp: mean temperature, different from target temperature for fluctuation regime which alternates been the target temperature and 6℃ higher.
 
-treatment_id: unique treatment ID comprised of Infection status, temperature, treatment, replicate number
+	realtemp: measured mean temperature over the experimental period provided by temperature loggers see MeanTempTreatments.csv.
 
-repl: replicate number from 1 to 18.
+	replicate: replicate number from 1 to 18.
 
-sum: sum of offspring produced over the experimental period.
+	death: date of death (last day 08/05/2019)
+
+	lastday: was the animal alive the last day of the experiment? Either 0 (dead) or 1 (alive). Used for spore analysis.
+
+	infect: infection status, either 0 (no parasite) or 1 (infected).
+
+	no_spore: number of spores observed in the dissected Daphnia gut.
+
+	size: size of the Daphnia measured under the binocular (for the real size this value  must be transformed by the magnification factor). Not used for the paper and is correlated with fecundity.
+
+	comment: gives additional information about the Daphnia during their live span.
+
+###
+
+*sum_daphnia_noNA.csv*: Daphnia data
+
+	no: unique sample number from 1 to 516.
+
+	treat: the temperature regime used, abbreviations, CS = constant, PULSE = heat wave, FLU = fluctuating. 
+
+	inf: exposure to the parasite, U = unexposed (control), I = exposed.
+
+	mean_temp: measured mean temperature over the experimental period provided by temperature loggers see MeanTempTreatments.csv.
+
+	temp: target temperature (10, 13, 16, 19, 22, 25 and 28)
+
+	treatment_id: unique treatment ID comprised of Infection status, temperature, treatment, replicate number
+
+	repl: replicate number from 1 to 18.
+
+	sum: sum of offspring produced over the experimental period.
 ###
 
 
