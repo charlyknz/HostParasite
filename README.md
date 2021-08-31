@@ -52,6 +52,8 @@ all_raw_temperatures_hobo.csv: merged data file of recordings made by the temper
   
 date: date and time of the measurement.
 
+expected_temp: aimed temperatues
+
 temp: measured temperature in °C
 
 id: name of the specific HOBO logger which consist of the treatment and target temperature (e.g., constant 10)
