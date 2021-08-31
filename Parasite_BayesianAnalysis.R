@@ -17,7 +17,7 @@ setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
 
 #### Import the data ####
-spore_data <- read.csv("~/Desktop/Irland/R code/Baysian/SporesNoMaleNA.csv", 
+spore_data <- read.csv("SporesNoMaleNA.csv", 
                        header = TRUE, stringsAsFactors = FALSE)
 # only exposed animals
 spore_data_I <- spore_data %>% filter(exposed == "I")
@@ -246,8 +246,7 @@ ggpar(inf_plot)
 #These are individuals that have been infected *and* have positive burden *and* died within the last X days of the experiment.
 
 burden_data <- spore_data_I %>% filter(no_spore > 0 & lastday == 1)
-par <- group_by(burden_data,  treatment) %>%
-  count()
+
 #Plot the burden data
 
 g3 <- ggplot(burden_data, aes(x = realtemp, y = no_spore, 
