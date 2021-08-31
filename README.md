@@ -19,11 +19,18 @@ Datasets and R scripts used for the analyses:
 
 List of RScripts: 
 betaFunction.R: Beta Function used to fit to the data.
+
 Host_BayesianAnalysis.R: Bayesian analysis for host data.
+
 Parasite_BayesianAnalysis.R: Bayesian analysis for parasite data.
+
 
 List of datafiles used for analysis: 
 MeanTempTreatments.csv: mean temperature of the different treatments, calculated from temperature logger data that can be found in all_raw_temperatures_hobo.csv.
+
 all_raw_temperatures_hobo.csv: merged data file of recordings made by the temperature loggers within each of the water baths. 
+
 SporesNoMaleNA.csv: observations on infection status and spore burden.
+
 sum_daphnia_noNA.csv: observations on Daphnia fecundity over the duration of the experiment.
+
