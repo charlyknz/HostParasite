@@ -24,7 +24,7 @@ betaFunction.R: Beta Function used to fit to the data.
 
 Host_BayesianAnalysis.R: Bayesian analysis for host data.
 
-Parasite_BayesianAnalysis.R: Bayesian analysis for parasite data.
+Parasite_BayesianAnalysis2.R: Bayesian analysis for parasite data.
 ###
 
 List of datafiles used for analysis: 
