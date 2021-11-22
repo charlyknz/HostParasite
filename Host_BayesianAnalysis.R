@@ -195,7 +195,7 @@ baby1 <- ggplot(data1, aes(y=mean, x=mean_temp, col = treat))+
   scale_x_continuous(breaks = seq(10, 28,3), limits=c(8,30))+
   scale_shape_manual(values=c( 16,1,17,2,15,0))+
   scale_color_manual(values=c('#003C67FF'),labels = c('constant'))+
-  scale_linetype_manual(values=c(6,1), labels = c('exposed', 'unexposed'))+
+  scale_linetype_manual(values=c(6,1), labels = c('parasite', 'control'))+
   coord_cartesian(ylim = c(0, 120), clip="off")+ #changes coord system to include the CI arrows in our plot
   labs(x = '', y ='reproductive output', shape = ' ', linetype = 'Exposure',color = 'Treatment')+
  facet_wrap(~treat, labeller = labeller(treat = label_treat))+
@@ -227,7 +227,7 @@ scale_y_continuous(breaks=NULL)+
   scale_x_continuous(breaks = seq(10, 28,3), limits=c(8,30))+
   scale_shape_manual(values=c( 17,2))+
   scale_color_manual(values=c('#EFC000FF','#A73030FF'),labels = c( 'fluctuation', 'heat wave'))+
-  scale_linetype_manual(values=c(6,1), labels = c('exposed', 'unexposed'))+
+  scale_linetype_manual(values=c(6,1), labels = c('parasite', 'control'))+
   coord_cartesian(ylim = c(0, 120), clip="off")+ #changes coord system to include the CI arrows in our plot
   labs(x = 'mean Temperature (in °C)', y ='  ', shape = ' ', linetype = 'Exposure',color = 'Treatment')+
   facet_wrap(~treat, labeller = labeller(treat = label_treat))+
@@ -258,19 +258,19 @@ baby3 <- ggplot(data3, aes(y=mean, x=mean_temp, col = treat))+
   geom_segment(x = 32.5, xend = 32.5, y = repro_CI[3,3],yend =repro_CI[3,7], col ='#EFC000FF', size = 1.3)+#flux #inf
   geom_segment(x = 33, xend = 33, y =  repro_CI[5,3],yend = repro_CI[5,7],col = '#A73030FF', size = 1.3) +#pulse #inf
   geom_segment(x = 31.9 , xend = 31.9, y = repro_CI[2,3],  yend = repro_CI[2,7], col ='#4A6990FF', size = 1.3)+ #constant un
-  geom_segment(x = 32.7, xend = 32.7, y = repro_CI[4,3],  yend = repro_CI[4,7], col ='#EFC000FF',size = 1.3)+ #flux un
+  geom_segment(x = 32.5, xend = 32.5, y = repro_CI[4,3],  yend = repro_CI[4,7], col ='#EFC000FF',size = 1.3)+ #flux un
   geom_segment(x = 33  , xend = 33, y = repro_CI[6,3],  yend = repro_CI[6,7], col = '#CD534CFF' , size = 1.3)+ #pulse un
   #t opt
   geom_segment(x = repro_CI[23,3] , xend = repro_CI[23,7], y = 129.5,  yend = 129.5, col = '#A73030FF',linetype = 6, size = 1.3)+ #pulse
   geom_segment(x = repro_CI[24,3] , xend = repro_CI[24,7], y = 129.5,  yend = 129.5, col = '#CD534CFF', size = 1.3)+ #un pulse
  # scale adjusts
-scale_y_continuous(breaks=NULL)+  
+  scale_y_continuous(breaks=NULL)+  
   scale_x_continuous(breaks = seq(10, 28,3), limits=c(8,30))+
   scale_shape_manual(values=c(15,0))+
   scale_color_manual(values=c('#A73030FF'),labels = c( 'heat wave'))+
-  scale_linetype_manual(values=c(6,1), labels = c('exposed', 'unexposed'))+
+  scale_linetype_manual(values=c(6,1), labels = c('parasite', 'control'))+
   coord_cartesian(ylim = c(0, 120), clip="off")+ #changes coord system to include the CI arrows in our plot
-  labs(x = ' ', y =' ', shape = ' ', linetype = 'Exposure',color = 'Treatment')+
+  labs(x = ' ', y =' ', shape = ' ', linetype = 'Exposed to',color = 'Treatment')+
   facet_wrap(~treat, labeller = labeller(treat = label_treat))+
   theme( panel.background = element_rect(fill = NA), 
          #panel.grid.major.y = element_line(color='grey', linetype = 'dashed', size=0.2),
@@ -287,6 +287,32 @@ ggpar(baby3)
 library(cowplot)
 allBAB<-plot_grid(baby1,baby2,baby3,nrow = 1)
 ggsave(allBAB, file = 'allBABIES.tiff', width = 12, height = 7)
+
+# plot for legend
+ggplot(host_data, aes(y=mean, x=mean_temp, col = treat))+
+  geom_line(data = pred, aes(x = xx, y = trans_pred, col = treat, linetype = inf), size = 0.8, alpha = 0.9)+
+  geom_point(aes(shape = inf),size = 3.5)+
+  geom_errorbar(aes(ymin = mean-se, ymax =  mean+se), width =0.8)+
+   # scale adjusts
+  scale_y_continuous(breaks=NULL)+  
+  scale_x_continuous(breaks = seq(10, 28,3), limits=c(8,30))+
+  scale_shape_manual(values=c(16,1,17,2,15,0), labels = c('parasite', 'control'))+
+  scale_color_manual(values=c('#003C67FF','#EFC000FF','#A73030FF'),labels = c('constant', 'fluctuation','heat wave'))+
+  scale_linetype_manual(values=c(6,1), labels = c('parasite', 'control'))+
+  coord_cartesian(ylim = c(0, 120), clip="off")+ #changes coord system to include the CI arrows in our plot
+  labs(x = ' ', y =' ', shape = 'Exposed to', linetype = 'Exposed to',color = 'Treatment')+
+  facet_wrap(~treat, labeller = labeller(treat = label_treat))+
+  theme( panel.background = element_rect(fill = NA), 
+         #panel.grid.major.y = element_line(color='grey', linetype = 'dashed', size=0.2),
+         panel.border= element_rect(colour = "black", fill=NA, size=0.5),
+         strip.background = element_rect(fill = NA),
+         legend.background = element_blank(),
+         legend.title = element_text(hjust=0),
+         legend.key = element_blank(),
+         legend.position = 'right',
+         text = element_text(size=17),
+         plot.margin = unit(c(1,0.8,1.5,0), "cm")) 
+ggsave(last_plot(), file = 'legend.tiff', width = 12, height = 7)
 
 #### Figure 2c ####
 #### only infected animals ###
