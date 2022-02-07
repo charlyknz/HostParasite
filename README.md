@@ -1,8 +1,10 @@
 # HostParasite
 
 
-README: Alternate patterns of temperature variation bring about very different disease outcomes at different mean temperatures
+README for: 
 
+Alternate patterns of temperature variation bring about very different disease outcomes at different mean temperatures
+DOI: 10.7554/eLife.72861
 
 list of authors: Charlotte Kunze 1,2*, Pepijn Luijckx 2*#, Andrew L. Jackson 2, Ian Donohue 2
 
