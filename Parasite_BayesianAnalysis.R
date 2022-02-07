@@ -220,7 +220,7 @@ inf_plot <- ggplot(all_df, aes(y = I(model_data_binomial$y / model_data_binomial
   geom_segment(x = summy_model[4,2] , xend =  30, y = 1.29,  yend = 1.29, arrow = arrow(length = unit(0.11,'cm')), col = '#003C67FF',size = 1.3)+#constant
   geom_segment(x = summy_model[5,2] , xend = summy_model[5,6], y = 1.27,  yend = 1.27, col = '#EFC000FF',size = 1.3)+#fluctuation
   geom_segment(x = summy_model[6,2], xend = 30, y = 1.25, yend = 1.25, arrow = arrow(length = unit(0.11,'cm')), col = '#A73030FF',size = 1.3)+#pulse
-  geom_line(data = inf_total, aes(x = xx, y = prediction, color = treatment), linetype = 'longdash', size = 0.8)+
+  geom_line(data = inf_total, aes(x = xx, y = prediction, color = treatment), linetype = 6, size = 0.8)+
   scale_x_continuous(breaks = seq(10, 28,3), limits=c(8,30))+
   scale_y_continuous(limits = c(0,1.15), breaks= seq(0,1,0.2))+
   scale_shape_manual(values=c( 16,17,15), labels = c('constant', 'fluctuating', 'heat wave'))+
@@ -417,7 +417,7 @@ data <- as.data.frame(model_data_burden) %>%
 # Note: CI of maximum spore burden, topt, tmin,tmax are stored in the dataframe burden_CI
 ## and are added in geom_segment
 spore_plot <- ggplot(data, aes(x = x, y = mean, color = treatment, shape = treatment ))+
-  geom_line(data = spore_total, aes(x = xx, y = trans_pred, color = treatment), linetype = 'longdash', size = 0.8)+
+  geom_line(data = spore_total, aes(x = xx, y = trans_pred, color = treatment), linetype = 6, size = 0.8)+
   geom_point(size = 3.5)+
   geom_errorbar(aes(ymin = mean-se, ymax =  mean+se), width = .2)+
   #Cm

@@ -291,16 +291,17 @@ ggsave(allBAB, file = 'allBABIES.tiff', width = 12, height = 7)
 # plot for legend
 ggplot(host_data, aes(y=mean, x=mean_temp, col = treat))+
   geom_line(data = pred, aes(x = xx, y = trans_pred, col = treat, linetype = inf), size = 0.8, alpha = 0.9)+
-  geom_point(aes(shape = inf),size = 3.5)+
+  geom_point(aes(shape = treat),size = 3.5)+
   geom_errorbar(aes(ymin = mean-se, ymax =  mean+se), width =0.8)+
    # scale adjusts
   scale_y_continuous(breaks=NULL)+  
   scale_x_continuous(breaks = seq(10, 28,3), limits=c(8,30))+
-  scale_shape_manual(values=c(16,1,17,2,15,0), labels = c('parasite', 'control'))+
+  scale_shape_manual(values=c(16,17,15), labels = c('constant', 'fluctuation','heat wave'))+
+  #scale_shape_manual(values=c(16,1), labels = c('parasite', 'placebo'))+
   scale_color_manual(values=c('#003C67FF','#EFC000FF','#A73030FF'),labels = c('constant', 'fluctuation','heat wave'))+
-  scale_linetype_manual(values=c(6,1), labels = c('parasite', 'control'))+
+  scale_linetype_manual(values=c(6,1), labels = c('parasite', 'placebo'))+
   coord_cartesian(ylim = c(0, 120), clip="off")+ #changes coord system to include the CI arrows in our plot
-  labs(x = ' ', y =' ', shape = 'Exposed to', linetype = 'Exposed to',color = 'Treatment')+
+  labs(x = ' ', y =' ', shape = 'Treatment', linetype = 'Exposed to',color = 'Treatment')+
   facet_wrap(~treat, labeller = labeller(treat = label_treat))+
   theme( panel.background = element_rect(fill = NA), 
          #panel.grid.major.y = element_line(color='grey', linetype = 'dashed', size=0.2),
@@ -312,7 +313,7 @@ ggplot(host_data, aes(y=mean, x=mean_temp, col = treat))+
          legend.position = 'right',
          text = element_text(size=17),
          plot.margin = unit(c(1,0.8,1.5,0), "cm")) 
-ggsave(last_plot(), file = 'legend.tiff', width = 12, height = 7)
+ggsave(last_plot(), file = 'legend1.tiff', width = 12, height = 7)
 
 #### Figure 2c ####
 #### only infected animals ###
@@ -322,7 +323,7 @@ inf_host_data <- host_data%>%
   filter(inf == 'I') 
 
 plot <- ggplot(inf_host_data, aes(y=mean, x=mean_temp, col = treat, shape = treat))+
-  geom_line(data = inf_pred, aes(x = xx, y = trans_pred, col = treat), alpha = 0.9,linetype =  'longdash', size = 0.8)+
+  geom_line(data = inf_pred, aes(x = xx, y = trans_pred, col = treat), alpha = 0.9,linetype =  6, size = 0.8)+
   geom_point(size = 3.5)+ #change shape of my points 
   geom_errorbar(aes(ymin = mean-se, ymax =  mean+se), width = .2)+
   #C max
